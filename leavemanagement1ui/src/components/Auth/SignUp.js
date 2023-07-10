@@ -129,7 +129,8 @@ const SignUp = () => {
   };
 
   return (
-    <div className="container" style={{ padding: '40px 180px' }}>
+    <div style={{ backgroundImage: `url(${require("./Auth1.jpg")})`, padding: '40px 180px', backgroundSize: "cover", }}>
+    <div className="container" style={{ padding: '40px 120px' }}>
       <div className="card">
         <div className="card-body">
           <h2 className="card-title justify-center">Sign Up</h2>
@@ -222,6 +223,7 @@ const SignUp = () => {
           </p>
         </div>
       </div>
+    </div>
     </div>
   );
 };

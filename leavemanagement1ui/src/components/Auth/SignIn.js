@@ -13,9 +13,9 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     const { email, password } = loginData;
-  
+
     if (email === 'admin@gmail.com' && password === 'admin') {
       localStorage.setItem('employeeId', 'admin'); // Set a unique identifier for the admin user
       navigate('/admin');
@@ -42,46 +42,48 @@ const SignIn = () => {
           setError('An error occurred. Please try again.');
         });
     }
-  };  
+  };
 
   return (
-    <div className="container" style={{ padding: '160px 200px' }}>
-      <div className="card">
-        <div className="card-body">
-          <h2 className="card-title">Sign In</h2>
-          <br></br>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                value={loginData.email}
-                onChange={handleInputChange}
-                autoComplete="off" // Disable autocomplete for email input
-              />
-            </div>
+    <div style={{ backgroundImage: `url(${require("./Auth1.jpg")})`, backgroundSize: "cover"}}>
+      <div className="container" style={{ padding: '160px 310px' }}>
+        <div className="card">
+          <div className="card-body">
+            <h2 className="card-title">Sign In</h2>
             <br></br>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="form-control"
-                value={loginData.password}
-                onChange={handleInputChange}
-              />
-            </div>
-            <br></br>
-            {error && <div className="alert alert-danger">{error}</div>}
-            <button type="submit" className="btn btn-primary">
-              Sign In
-            </button>
-          </form>
-          <p className="mt-3">
-            New employee? <Link to="/signup">Sign up here</Link>
-          </p>
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="form-control"
+                  value={loginData.email}
+                  onChange={handleInputChange}
+                  autoComplete="off" // Disable autocomplete for email input
+                />
+              </div>
+              <br></br>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="form-control"
+                  value={loginData.password}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <br></br>
+              {error && <div className="alert alert-danger">{error}</div>}
+              <button type="submit" className="btn btn-primary">
+                Sign In
+              </button>
+            </form>
+            <p className="mt-3">
+              New employee? <Link to="/signup">Sign up here</Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

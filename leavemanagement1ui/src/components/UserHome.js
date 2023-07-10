@@ -20,7 +20,7 @@ const UserHome = () => {
   };
 
   return (
-    <div>
+    <div style={{ backgroundImage: `url(${require("./lms.jpg")})`, backgroundSize: "cover", minHeight: "96vh" }}>
       <nav className="navbar navbar-expand-sm bg-dark navbar-dark" style={{ marginTop: "20px", marginLeft: "20px", marginRight: "20px" }}>
         <Link className="navbar-brand" to="/">
           <img src={require("./user.png")} alt="logo" style={logoStyle} />
