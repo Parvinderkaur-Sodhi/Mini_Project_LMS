@@ -14,6 +14,8 @@ const SignUp = () => {
   const [error, setError] = useState('');
   const [emailExists, setEmailExists] = useState(false);
   const [usernameExists, setUsernameExists] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [phoneNumberError, setPhoneNumberError] = useState('');
 
   const handleInputChange = (e) => {
     setSignupData({ ...signupData, [e.target.name]: e.target.value });
@@ -51,11 +53,48 @@ const SignUp = () => {
     }
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhoneNumber = (phoneNumber) => {
+    const phoneRegex = /^\d{10}$/;
+    return phoneRegex.test(phoneNumber);
+  };
+
+  const handleEmailChange = (e) => {
+    const { value } = e.target;
+    if (value.trim() !== '') {
+      if (!validateEmail(value)) {
+        setEmailError('Please enter a valid email address');
+      } else {
+        setEmailError('');
+      }
+    } else {
+      setEmailError('');
+    }
+    setSignupData({ ...signupData, email: value });
+  };
+
+  const handlePhoneNumberChange = (e) => {
+    const { value } = e.target;
+    if (value.trim() !== '') {
+      if (!validatePhoneNumber(value)) {
+        setPhoneNumberError('Please enter a 10-digit phone number');
+      } else {
+        setPhoneNumberError('');
+      }
+    } else {
+      setPhoneNumberError('');
+    }
+    setSignupData({ ...signupData, phoneNumber: value });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const encodedPassword = btoa(signupData.password); // Encode the password
-
     const newEmployee = {
       ...signupData,
       password: encodedPassword,
@@ -104,6 +143,7 @@ const SignUp = () => {
                 className="form-control"
                 value={signupData.name}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <br></br>
@@ -116,6 +156,7 @@ const SignUp = () => {
                 value={signupData.username}
                 onChange={handleInputChange}
                 onBlur={handleUsernameBlur}
+                required
               />
               {usernameExists && <div className="text-danger">Username already exists. Please choose a different username.</div>}
             </div>
@@ -127,10 +168,12 @@ const SignUp = () => {
                 name="email"
                 className="form-control"
                 value={signupData.email}
-                onChange={handleInputChange}
+                onChange={handleEmailChange}
                 onBlur={handleEmailBlur}
+                required
               />
-              {emailExists && <div className="text-danger">Email already exists. Please use a different email address.</div>}
+              {emailError && <div className="text-danger">{emailError}</div>}
+              {emailExists && !emailError && <div className="text-danger">Email already exists. Please use a different email address.</div>}
             </div>
             <br></br>
             <div className="form-group">
@@ -141,6 +184,7 @@ const SignUp = () => {
                 className="form-control"
                 value={signupData.password}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <br></br>
@@ -151,8 +195,10 @@ const SignUp = () => {
                 name="phoneNumber"
                 className="form-control"
                 value={signupData.phoneNumber}
-                onChange={handleInputChange}
+                onChange={handlePhoneNumberChange}
+                required
               />
+              {phoneNumberError && <div className="text-danger">{phoneNumberError}</div>}
             </div>
             <br></br>
             <div className="form-group">
@@ -163,10 +209,10 @@ const SignUp = () => {
                 className="form-control"
                 value={signupData.department}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <br></br>
-            {error && <div className="alert alert-danger">{error}</div>}
             <button type="submit" className="btn btn-primary">
               Sign Up
             </button>
