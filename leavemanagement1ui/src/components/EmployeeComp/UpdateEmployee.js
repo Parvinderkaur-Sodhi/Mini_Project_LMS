@@ -11,7 +11,8 @@ const UpdateEmployee = () => {
     department: "",
     email: "",
     phoneNumber: "",
-    username: "", // Added username field
+    username: "",
+    password: "",
   });
 
   useEffect(() => {
@@ -22,8 +23,8 @@ const UpdateEmployee = () => {
   const fetchEmployee = () => {
     EmployeeService.getEmployeeById(id)
       .then((response) => {
-        const { name, department, email, phoneNumber, username } = response.data;
-        setEmployee({ name, department, email, phoneNumber, username });
+        const { name, department, email, phoneNumber, username, password } = response.data;
+        setEmployee({ name, department, email, phoneNumber, username, password });
       })
       .catch((error) => {
         console.log(error);
@@ -38,8 +39,8 @@ const UpdateEmployee = () => {
   const updateEmployee = (e) => {
     console.log("Update button clicked");
     e.preventDefault();
-    const { name, department, email, phoneNumber, username } = employee;
-    const updatedEmployee = { name, department, email, phoneNumber, username };
+    const { name, department, email, phoneNumber, username, password } = employee;
+    const updatedEmployee = { name, department, email, phoneNumber, username, password };
     EmployeeService.updateEmployee(id, updatedEmployee)
       .then((response) => {
         console.log(response);

@@ -130,100 +130,105 @@ const SignUp = () => {
 
   return (
     <div style={{ backgroundImage: `url(${require("./Auth1.jpg")})`, padding: '40px 180px', backgroundSize: "cover", }}>
-    <div className="container" style={{ padding: '40px 120px' }}>
-      <div className="card">
-        <div className="card-body">
-          <h2 className="card-title justify-center">Sign Up</h2>
-          <br></br>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                value={signupData.name}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
+      <div className="container" style={{ padding: '40px 120px' }}>
+        <div className="card">
+          <div className="card-body">
+            <h2 className="card-title justify-center">Sign Up</h2>
             <br></br>
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <input
-                type="text"
-                name="username"
-                className="form-control"
-                value={signupData.username}
-                onChange={handleInputChange}
-                onBlur={handleUsernameBlur}
-                required
-              />
-              {usernameExists && <div className="text-danger">Username already exists. Please choose a different username.</div>}
-            </div>
-            <br></br>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                value={signupData.email}
-                onChange={handleEmailChange}
-                onBlur={handleEmailBlur}
-                required
-              />
-              {emailError && <div className="text-danger">{emailError}</div>}
-              {emailExists && !emailError && <div className="text-danger">Email already exists. Please use a different email address.</div>}
-            </div>
-            <br></br>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="form-control"
-                value={signupData.password}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <br></br>
-            <div className="form-group">
-              <label htmlFor="phoneNumber">Phone Number</label>
-              <input
-                type="text"
-                name="phoneNumber"
-                className="form-control"
-                value={signupData.phoneNumber}
-                onChange={handlePhoneNumberChange}
-                required
-              />
-              {phoneNumberError && <div className="text-danger">{phoneNumberError}</div>}
-            </div>
-            <br></br>
-            <div className="form-group">
-              <label htmlFor="department">Department</label>
-              <input
-                type="text"
-                name="department"
-                className="form-control"
-                value={signupData.department}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <br></br>
-            <button type="submit" className="btn btn-primary">
-              Sign Up
-            </button>
-          </form>
-          <p className="mt-3">
-            Already have an account? <Link to="/">Sign in here</Link>
-          </p>
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  className="form-control"
+                  value={signupData.name}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <br></br>
+              <div className="form-group">
+                <label htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  className="form-control"
+                  value={signupData.username}
+                  onChange={handleInputChange}
+                  onBlur={handleUsernameBlur}
+                  required
+                />
+                {usernameExists && <div className="text-danger">Username already exists. Please choose a different username.</div>}
+              </div>
+              <br></br>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="form-control"
+                  value={signupData.email}
+                  onChange={handleEmailChange}
+                  onBlur={handleEmailBlur}
+                  required
+                />
+                {emailError && <div className="text-danger">{emailError}</div>}
+                {emailExists && !emailError && <div className="text-danger">Email already exists. Please use a different email address.</div>}
+              </div>
+              <br></br>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="form-control"
+                  value={signupData.password}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <br></br>
+              <div className="form-group">
+                <label htmlFor="phoneNumber">Phone Number</label>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  className="form-control"
+                  value={signupData.phoneNumber}
+                  onChange={handlePhoneNumberChange}
+                  required
+                />
+                {phoneNumberError && <div className="text-danger">{phoneNumberError}</div>}
+              </div>
+              <br></br>
+              <div className="form-group">
+                <label htmlFor="department">Department</label>
+                <select
+                  name="department"
+                  className="form-control"
+                  value={signupData.department}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="">Select Department</option>
+                  <option value="IT">IT</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Sales">Sales</option>
+                  <option value="HR">HR</option>
+                </select>
+              </div>
+              <br></br>
+              <button type="submit" className="btn btn-primary">
+                Sign Up
+              </button>
+            </form>
+            <p className="mt-3">
+              Already have an account? <Link to="/">Sign in here</Link>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
